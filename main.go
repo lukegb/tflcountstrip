@@ -26,8 +26,8 @@ var (
 
 	TFL_URL = ""
 
-	SPARK_URL             = ""
-	SPARK_ACCESS_TOKEN    = ""
+	SPARK_URL          = ""
+	SPARK_ACCESS_TOKEN = ""
 )
 
 func performUpdate(api *tflcountdown.InstantAPI, req tflcountdown.Request) ([]bool, error) {
