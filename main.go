@@ -16,15 +16,13 @@ const (
 	LED_STRIP_LENGTH_TIME = 15 * time.Minute
 	LED_TIME              = LED_STRIP_LENGTH_TIME / LED_STRIP_LENGTH
 
-	SUB_TIME = 10 * time.Second
-
 	MIN_RUN_TIME  = 1 * time.Minute
 	MIN_SAFE_TIME = 3 * time.Minute
 	MAX_SAFE_TIME = 5 * time.Minute
 )
 
 var (
-	INTERESTING_BUS_STOPS = []string{"15352"}
+	INTERESTING_BUS_STOPS = []string{"15353"}
 
 	TFL_URL = ""
 
@@ -42,7 +40,7 @@ func performUpdate(api *tflcountdown.InstantAPI, req tflcountdown.Request) ([]bo
 		case msg := <-msgChan:
 			if msg, ok := msg.(tflcountdown.PredictionData); ok {
 				b, err := json.Marshal(msg)
-				estTime := msg.EstimatedTime.Add(-SUB_TIME)
+				estTime := msg.EstimatedTime
 
 				if estTime.After(now.Add(LED_STRIP_LENGTH_TIME)) {
 					//log.Println("SKIPMSG", string(b), err)
